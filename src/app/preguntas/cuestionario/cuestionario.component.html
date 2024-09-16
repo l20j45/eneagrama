@@ -1,0 +1,41 @@
+<section class="bg-background w-3/4 p-4 mx-auto mt-8 rounded-2xl ">
+  <h1 class="font-bold text-xl text-center">Cuestionario 1</h1>
+  <form [formGroup]="formularioPreguntas" (ngSubmit)="submit()">
+    @defer (on timer(500ms)) {
+      <div class="flex flex-col mx-auto">
+        @for (pregunta of ordernarIds(); track pregunta.id; let idx = $index ) {
+
+          <label
+            class="font-bold text-center text-xl mt-8 mb-5"> {{ pregunta.idPregunta + ".- " + pregunta.pregunta }}</label>
+          <div class="flex justify-between">
+            <div>
+              <label for="respuesta{{idx+1}}_a"> {{ pregunta.respuesta1 }}</label>
+              <input
+                class="ms-5 before:content[''] peer relative h-5 w-5 cursor-pointer appearance-none rounded-md border border-blue-gray-200 transition-all before:absolute before:top-2/4 before:left-2/4 before:block before:h-12 before:w-12 before:-translate-y-2/4 before:-translate-x-2/4 before:rounded-full before:bg-blue-gray-500 before:opacity-0 before:transition-opacity checked:border-pink-500 checked:bg-pink-500 checked:before:bg-pink-500 hover:before:opacity-10"
+                id="respuesta{{idx+1}}_a" type="radio" formControlName="pregunta{{idx+1}}"
+                value=0>
+            </div>
+            <div>
+              <label for="respuesta{{idx}}_b"> {{ pregunta.respuesta2 }}</label>
+              <input
+                class="ms-5 before:content[''] peer relative h-5 w-5 cursor-pointer appearance-none rounded-md border border-blue-gray-200 transition-all before:absolute before:top-2/4 before:left-2/4 before:block before:h-12 before:w-12 before:-translate-y-2/4 before:-translate-x-2/4 before:rounded-full before:bg-blue-gray-500 before:opacity-0 before:transition-opacity checked:border-pink-500 checked:bg-pink-500 checked:before:bg-pink-500 hover:before:opacity-10"
+                id="respuesta{{idx+1}}_b" type="radio" formControlName="pregunta{{idx+1}}"
+                value=1>
+            </div>
+          </div>
+        } @empty {
+          Error Cargando Pagina
+        }
+      </div>
+      <div class="flex w-full justify-end">
+        <button
+          class="focus:outline-none text-white bg-primary-700 hover:bg-primary-700 focus:ring-4 focus:ring-primary-100 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-primary-400 dark:hover:bg-primary-700 dark:focus:ring-primary-700 mt-5"
+          type="submit">Confirmar
+        </button>
+      </div>
+    } @placeholder () {
+      <p>Estoy cargando panita</p>
+    }
+  </form>
+
+</section>
